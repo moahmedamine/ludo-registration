@@ -171,32 +171,49 @@
     </form>
   </div>
 
-  <script>
-    const form = document.getElementById('registrationForm');
+ <script>
+  const form = document.getElementById('registrationForm');
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx_mTMFQY6qt3HUDdgqD7580oYyClqSkR9SKWqXSLHm-JrswefKmoUUE74PThd-Xj2W/exec';
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-      const formData = new FormData(form);
+    // Collect form values manually to send JSON
+    const data = {
+      fullname: form.fullname.value,
+      age: form.age.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      availability: form.availability.value,
+      color: form.color.value,
+      media: form.media.value,
+      notes: form.notes.value,
+      confirm: form.confirm.checked ? "yes" : "no"
+    };
 
-      fetch('https://script.google.com/macros/s/AKfycbyNE3TL_Dl114yWjECIjP4h71bOx_kR4JhYC3JKvydW27By1i2DWm-2OvtDHu8BK9MHDQ/exec', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if(data.result === 'success') {
-          window.location.href = 'success.html';
-        } else {
-          alert('Oops! There was an error submitting your form. Please try again.');
-          console.error(data.error);
-        }
-      })
-      .catch(error => {
-        alert('Network error. Please check your internet connection and try again.');
-        console.error(error);
-      });
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(data),  // send JSON string
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.result === 'success') {
+        window.location.href = 'success.html';
+      } else {
+        alert('Oops! There was an error submitting your form. Please try again.');
+        console.error(data.error);
+      }
+    })
+    .catch(error => {
+      alert('Network error. Please check your internet connection and try again.');
+      console.error(error);
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
+
