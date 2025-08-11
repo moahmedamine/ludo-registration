@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LUDO Real Life - Registration Form</title>
   <style>
-    @keyframes slideIn {
-      0% { transform: translateY(-50px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #ffe259, #ffa751);
@@ -63,35 +59,34 @@
     }
     .radio-group, .checkbox-group {
       margin-top: 10px;
-    }
-    .radio-group input, .checkbox-group input {
-      margin-right: 10px;
-      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
     }
     .radio-group label, .checkbox-group label {
-      display: inline-block;
-      margin-right: 20px;
-      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-weight: normal;
       color: #333;
-    }
-    .checkbox-group label {
-      font-weight: bold;
-    }
-    /* Make the checkbox bigger and highlighted */
-    .checkbox-group input[type="checkbox"] {
-      width: 22px;
-      height: 22px;
       cursor: pointer;
-      outline: none;
-      border: 2px solid #ffa751;
-      border-radius: 5px;
-      transition: box-shadow 0.3s ease;
+      user-select: none;
+    }
+    /* bigger and clearer radio and checkbox */
+    input[type="radio"], input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
       vertical-align: middle;
     }
+    /* checkbox highlight when unchecked */
     .checkbox-group input[type="checkbox"]:not(:checked) {
       box-shadow: 0 0 8px 3px #ffecb3;
       background-color: #fff8dc;
+      border: 2px solid #ffa751;
+      border-radius: 5px;
+      transition: box-shadow 0.3s ease;
     }
     .checkbox-group input[type="checkbox"]:checked {
       box-shadow: none;
@@ -113,7 +108,7 @@
     button:hover {
       background-color: #37434f;
     }
-    /* Placeholder examples */
+    /* placeholders */
     input#phone::placeholder {
       color: #999;
       font-style: italic;
@@ -125,32 +120,29 @@
     <div class="logo-container">
       <img src="ludoooooooooo.png" alt="Ludo Logo" />
     </div>
-    <h1 class="animated-title">🎲 LUDO REAL LIFE</h1>
+    <h1>🎲 LUDO REAL LIFE</h1>
     <p class="description">
       Join the ultimate outdoor LUDO challenge on <strong>20 August 2025</strong>!<br />
       Only 20 players will enter – real dice, real game board, real fun. Register now and let the games begin!
     </p>
 
     <form id="registrationForm">
-      <label for="fullname">Full Name *</label>
+      <label for="fullname">Full Name</label>
       <input type="text" id="fullname" name="fullname" required placeholder="John Doe" />
 
-      <label for="age">Age *</label>
+      <label for="age">Age</label>
       <input type="number" id="age" name="age" min="13" required placeholder="18" />
 
-      <label for="phone">Phone Number *</label>
+      <label for="phone">Phone Number</label>
       <input type="tel" id="phone" name="phone" required placeholder="93 855 336" pattern="[0-9\s]+" title="Please enter your phone number like 93 855 336" />
 
       <label for="email">Email (optional)</label>
       <input type="email" id="email" name="email" placeholder="example@email.com" />
 
-      <label>Will you be available on 20 August 2025 from 4 PM to 8 PM? *</label>
+      <label>Will you be available on 20 August 2025 from 4 PM to 8 PM?</label>
       <div class="radio-group">
-        <input type="radio" id="availableYes" name="availability" value="yes" required />
-        <label for="availableYes">Yes</label>
-
-        <input type="radio" id="availableNo" name="availability" value="no" />
-        <label for="availableNo">No</label>
+        <label><input type="radio" id="availableYes" name="availability" value="yes" required /> Yes</label>
+        <label><input type="radio" id="availableNo" name="availability" value="no" /> No</label>
       </div>
 
       <label>Preferred Pawn Color</label>
@@ -162,21 +154,17 @@
         <option value="yellow">🟡 Yellow</option>
       </select>
 
-      <label>Do you agree to be filmed/photographed during the event? *</label>
+      <label>Do you agree to be filmed/photographed during the event?</label>
       <div class="radio-group">
-        <input type="radio" id="mediaYes" name="media" value="yes" required />
-        <label for="mediaYes">Yes</label>
-
-        <input type="radio" id="mediaNo" name="media" value="no" />
-        <label for="mediaNo">No</label>
+        <label><input type="radio" id="mediaYes" name="media" value="yes" required /> Yes</label>
+        <label><input type="radio" id="mediaNo" name="media" value="no" /> No</label>
       </div>
 
       <label for="notes">Any Notes or Questions?</label>
       <textarea id="notes" name="notes" rows="4" placeholder="Write your notes or questions here..."></textarea>
 
       <div class="checkbox-group">
-        <input type="checkbox" id="confirm" name="confirm" required />
-        <label for="confirm">I confirm my participation and agree to follow the event rules.</label>
+        <label><input type="checkbox" id="confirm" name="confirm" required /> I confirm my participation and agree to follow the event rules.</label>
       </div>
 
       <button type="submit">Let's Play LUDO!</button>
@@ -212,4 +200,3 @@
   </script>
 </body>
 </html>
-
